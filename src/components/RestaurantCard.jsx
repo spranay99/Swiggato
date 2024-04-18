@@ -1,28 +1,31 @@
 import React from "react";
 
-const RestaurantCard = () => {
+const RestaurantCard = ({ resList }) => {
   return (
     <div className="w-[273px] mb-3 hover:scale-95 duration-150">
       <div className="h-[182px] rounded-[15px] overflow-hidden relative">
         <img
           className="duration-150 object-cover w-full h-full"
-          src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_366/2b4f62d606d1b2bfba9ba9e5386fabb7"
-          alt="pizza-hut"
+          src={
+            "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_366/" +
+            resList.info.cloudinaryImageId
+          }
+          alt={resList.info.name}
         />
         <div className="bg-gradient-to-b from-transparent to-black absolute w-full h-full top-0 flex items-end p-2 text-[25px] font-bold text-white tracking-tighter">
-          Items at 179
+          {resList.info.aggregatedDiscountInfoV2.header}
         </div>
       </div>
       <div className="px-2 py-1">
-        <div className="text-xl font-bold">Pizza hut</div>
+        <div className="text-xl font-bold">{resList.info.name}</div>
         <div className="flex items-center gap-2">
-          <StarSVGIcon /> 4.2
-          <span>30 - 40 mins</span>
+          <StarSVGIcon /> {resList.info.avgRating}
+          <span>{resList.info.sla.slaString}</span>
         </div>
         <div className="text-slate-700">
-          Pizzas
+          {resList.info.cuisines[0]}
           <br />
-          Bandra Kurla Complex
+          {resList.info.locality}
         </div>
       </div>
     </div>
@@ -66,6 +69,19 @@ const StarSVGIcon = () => {
       </defs>
     </svg>
   );
+};
+
+export const withPromotedLabel = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <div className="relative">
+        <label className="bg-black text-white p-2 z-10 rounded-lg absolute">
+          Promoted
+        </label>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
 };
 
 export default RestaurantCard;

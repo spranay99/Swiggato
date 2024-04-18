@@ -1,7 +1,30 @@
-import React from "react";
-import RestaurantCard from "./RestaurantCard";
+import React, { useEffect, useState } from "react";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
+import { RESTAURANT_LIST } from "../utils/constants";
 
 const Restaurants = () => {
+  const [restaurantsList, setRestaurantsList] = useState([]);
+
+  const PromotedRestaurantCard = withPromotedLabel(RestaurantCard);
+
+  useEffect(() => {
+    fetchRestaurants();
+  }, []);
+
+  const fetchRestaurants = async () => {
+    try {
+      const data = await fetch(RESTAURANT_LIST);
+      const json = await data.json();
+      setRestaurantsList(
+        json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants
+      );
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  if (!restaurantsList) return "Loading Restaurants!";
+
   return (
     <div className="max-w-[1200px] mx-auto">
       <div className="text-[25px] font-extrabold">
@@ -27,15 +50,15 @@ const Restaurants = () => {
       </div>
 
       <div className="grid grid-cols-4 gap-3">
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
+        {restaurantsList.map((restaurant) => (
+          <React.Fragment key={restaurant.info.id}>
+            {restaurant.info.promoted ? (
+              <PromotedRestaurantCard resList={restaurant} />
+            ) : (
+              <RestaurantCard resList={restaurant} />
+            )}
+          </React.Fragment>
+        ))}
       </div>
     </div>
   );
