@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
+import RestaurantCard, { withVegLabel } from "./RestaurantCard";
 import { RESTAURANT_LIST } from "../utils/constants";
 import HomePageShimmer from "./HomePageShimmer";
 import Categories from "./Categories";
@@ -7,7 +7,7 @@ import Categories from "./Categories";
 const Restaurants = () => {
   const [restaurantsList, setRestaurantsList] = useState([]);
 
-  const PromotedRestaurantCard = withPromotedLabel(RestaurantCard);
+  const VegRestaurantCard = withVegLabel(RestaurantCard);
 
   useEffect(() => {
     fetchRestaurants();
@@ -17,8 +17,10 @@ const Restaurants = () => {
     try {
       const data = await fetch(RESTAURANT_LIST);
       const json = await data.json();
+      console.log(json);
       setRestaurantsList(
-        json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants
+        // json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants ||
+        json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
       );
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -32,7 +34,7 @@ const Restaurants = () => {
   ) : (
     <>
       <Categories />
-      <div className="max-w-[1200px] mx-auto">
+      <div className="max-w-[1200px] mx-auto mb-10">
         <div className="text-[25px] font-extrabold">
           Restaurants with online food delivery in Mumbai
         </div>
@@ -58,8 +60,8 @@ const Restaurants = () => {
         <div className="grid grid-cols-4 gap-3">
           {restaurantsList.map((restaurant) => (
             <React.Fragment key={restaurant.info.id}>
-              {restaurant.info.promoted ? (
-                <PromotedRestaurantCard resList={restaurant} />
+              {restaurant.info.veg ? (
+                <VegRestaurantCard resList={restaurant} />
               ) : (
                 <RestaurantCard resList={restaurant} />
               )}

@@ -1,6 +1,8 @@
 import React from "react";
 
 const RestaurantCard = ({ resList }) => {
+  console.log({ resList });
+
   return (
     <div className="w-[273px] mb-3 hover:scale-95 duration-150">
       <div className="h-[182px] rounded-[15px] overflow-hidden relative">
@@ -13,7 +15,7 @@ const RestaurantCard = ({ resList }) => {
           alt={resList.info.name}
         />
         <div className="bg-gradient-to-b from-transparent to-black absolute w-full h-full top-0 flex items-end p-2 text-[25px] font-bold text-white tracking-tighter">
-          {resList.info.aggregatedDiscountInfoV2.header}
+          {resList.info.aggregatedDiscountInfoV3.header}
         </div>
       </div>
       <div className="px-2 py-1">
@@ -71,12 +73,12 @@ const StarSVGIcon = () => {
   );
 };
 
-export const withPromotedLabel = (RestaurantCard) => {
+export const withVegLabel = (RestaurantCard) => {
   return (props) => {
     return (
-      <div className="relative">
-        <label className="bg-black text-white p-2 z-10 rounded-lg absolute">
-          Promoted
+      <div className="relative ">
+        <label className="bg-green-700 text-white px-4 py-1 z-10 rounded-lg absolute">
+          Veg
         </label>
         <RestaurantCard {...props} />
       </div>
