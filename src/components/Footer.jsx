@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const aboutCompany = ["About", "Team", "Careers"];
@@ -20,7 +21,12 @@ const Footer = () => {
         <div className="grid grid-cols-4">
           <ul className="flex flex-col ">
             <li className="flex items-center">
-              <img src="images/icon.png" className="w-6 inline mr-3" />
+              <Link to="/">
+                <img
+                  src="../public/images/icon.png"
+                  className="w-6 inline mr-3"
+                />
+              </Link>
               <span className="font-semibold text-2xl">Swiggato</span>
             </li>
             <li className="text-gray-400 my-2">

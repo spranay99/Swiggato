@@ -1,36 +1,48 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const RestaurantCard = ({ resList }) => {
-  console.log({ resList });
+  // console.log({ resList });
+
+  const { id, cloudinaryImageId, name, avgRating, sla, locality, cuisines } =
+    resList.info;
+
+  // const { header, subHeader } = resList?.info?.aggregatedDiscountInfoV3;
+
+  // console.log(header + " " + subHeader);
 
   return (
-    <div className="w-[273px] mb-3 hover:scale-95 duration-150">
-      <div className="h-[182px] rounded-[15px] overflow-hidden relative">
-        <img
-          className="duration-150 object-cover w-full h-full"
-          src={
-            "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_366/" +
-            resList.info.cloudinaryImageId
-          }
-          alt={resList.info.name}
-        />
-        <div className="bg-gradient-to-b from-transparent to-black absolute w-full h-full top-0 flex items-end p-2 text-[25px] font-bold text-white tracking-tighter">
-          {resList.info.aggregatedDiscountInfoV3.header}
+    <Link to={"/restaurants/" + id}>
+      <div className="w-[273px] mb-3 hover:scale-95 duration-150 cursor-pointer">
+        <div className="h-[182px] rounded-[15px] overflow-hidden relative">
+          <img
+            className="duration-150 object-cover w-full h-full"
+            src={
+              "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_366/" +
+              cloudinaryImageId
+            }
+            alt={name}
+          />
+          <div className="bg-gradient-to-b from-transparent to-black absolute w-full h-full top-0 flex items-end p-2 text-[25px] font-bold text-white tracking-tighter">
+            {/* {aggregatedDiscountInfoV3.header +
+              " " +
+              aggregatedDiscountInfoV3.subHeader} */}
+          </div>
+        </div>
+        <div className="px-2 py-1">
+          <div className="text-xl font-bold">{name}</div>
+          <div className="flex items-center gap-2">
+            <StarSVGIcon /> {avgRating}
+            <span>{sla.slaString}</span>
+          </div>
+          <div className="text-slate-700">
+            {cuisines[0]}
+            <br />
+            {locality}
+          </div>
         </div>
       </div>
-      <div className="px-2 py-1">
-        <div className="text-xl font-bold">{resList.info.name}</div>
-        <div className="flex items-center gap-2">
-          <StarSVGIcon /> {resList.info.avgRating}
-          <span>{resList.info.sla.slaString}</span>
-        </div>
-        <div className="text-slate-700">
-          {resList.info.cuisines[0]}
-          <br />
-          {resList.info.locality}
-        </div>
-      </div>
-    </div>
+    </Link>
   );
 };
 

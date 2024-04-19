@@ -5,6 +5,7 @@ import { RiDiscountPercentLine } from "react-icons/ri";
 import { IoHelpBuoyOutline } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [toggle, setToggle] = useState(false);
@@ -57,14 +58,16 @@ const Header = () => {
       </div>
       <header className="p-[15px] shadow-xl text-[#686b78] sticky top-0 bg-white z-20">
         <div className="max-w-[1200px] mx-auto  flex items-center">
-          <div className="w-[40px] mx-8">
-            <img
-              className="w-full"
-              // src="https://1000logos.net/wp-content/uploads/2021/05/Swiggy-emblem.png"
-              src="images/icon.png"
-              alt="logo"
-            />
-          </div>
+          <Link to="/">
+            <div className="w-[40px] mx-8">
+              <img
+                className="w-full"
+                // src="https://1000logos.net/wp-content/uploads/2021/05/Swiggy-emblem.png"
+                src="../public/images/icon.png"
+                alt="logo"
+              />
+            </div>
+          </Link>
           <div className="cursor-pointer">
             <span className="font-bold border-b-[3px] border-black ">
               Other

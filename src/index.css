@@ -6,3 +6,10 @@
 .background-overlay{
     background-color: rgba(0, 0, 0, 0.7);
 }
+
+.menu-card{
+    background: linear-gradient(rgb(255, 255, 255) -6.71%, rgb(235, 235, 242) 56.19%, rgb(223, 223, 231) 106.56%);
+    padding: 0px 16px 16px;
+    border-bottom-left-radius: 36px;
+    border-bottom-right-radius: 36px;
+}
