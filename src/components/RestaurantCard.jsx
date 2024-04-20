@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const RestaurantCard = ({ resList }) => {
-  // console.log({ resList });
-
   const { id, cloudinaryImageId, name, avgRating, sla, locality, cuisines } =
     resList.info;
 
@@ -36,7 +34,7 @@ const RestaurantCard = ({ resList }) => {
             <span>{sla.slaString}</span>
           </div>
           <div className="text-slate-700">
-            {cuisines[0]}
+            {cuisines.slice(0, 2).join(", ")}
             <br />
             {locality}
           </div>

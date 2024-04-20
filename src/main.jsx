@@ -12,7 +12,6 @@ const AppLayout = () => {
     <>
       <Header />
       <Outlet />
-      <Footer />
     </>
   );
 };
@@ -24,7 +23,12 @@ const appRouter = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Restaurants />,
+        element: (
+          <>
+            <Restaurants />
+            <Footer />
+          </>
+        ),
       },
       {
         path: "/restaurants/:resId",

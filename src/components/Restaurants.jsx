@@ -17,7 +17,7 @@ const Restaurants = () => {
     try {
       const data = await fetch(RESTAURANT_LIST);
       const json = await data.json();
-      console.log(json);
+      // console.log(json);
       setRestaurantsList(
         // json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants ||
         json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
