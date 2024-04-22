@@ -2,12 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const RestaurantCard = ({ resList }) => {
-  const { id, cloudinaryImageId, name, avgRating, sla, locality, cuisines } =
-    resList.info;
-
-  // const { header, subHeader } = resList?.info?.aggregatedDiscountInfoV3;
-
-  // console.log(header + " " + subHeader);
+  const {
+    id,
+    cloudinaryImageId,
+    name,
+    avgRating,
+    sla,
+    locality,
+    cuisines,
+    aggregatedDiscountInfoV3,
+  } = resList.info;
 
   return (
     <Link to={"/restaurants/" + id}>
@@ -22,9 +26,8 @@ const RestaurantCard = ({ resList }) => {
             alt={name}
           />
           <div className="bg-gradient-to-b from-transparent to-black absolute w-full h-full top-0 flex items-end p-2 text-[25px] font-bold text-white tracking-tighter">
-            {/* {aggregatedDiscountInfoV3.header +
-              " " +
-              aggregatedDiscountInfoV3.subHeader} */}
+            {aggregatedDiscountInfoV3?.header}{" "}
+            {aggregatedDiscountInfoV3?.subHeader}
           </div>
         </div>
         <div className="px-2 py-1">

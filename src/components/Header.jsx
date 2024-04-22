@@ -6,9 +6,12 @@ import { IoHelpBuoyOutline } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [toggle, setToggle] = useState(false);
+
+  const cartItems = useSelector((store) => store.cart.items);
 
   const setSideToggle = () => {
     setToggle(!toggle);
@@ -30,10 +33,6 @@ const Header = () => {
     {
       icon: <FaRegUser />,
       name: "Sign In",
-    },
-    {
-      icon: <FiShoppingCart />,
-      name: "Cart",
     },
   ];
 
@@ -89,6 +88,13 @@ const Header = () => {
                 {link.name}
               </li>
             ))}
+            <Link to="/cart">
+              <li className="flex items-center gap-2 cursor-pointer hover:text-[#fc8019]">
+                {/* <FiShoppingCart /> */}
+                <span>[{cartItems.length}]</span>
+                <span>Cart</span>
+              </li>
+            </Link>
           </nav>
         </div>
       </header>

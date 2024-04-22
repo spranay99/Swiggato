@@ -1,7 +1,14 @@
 import React from "react";
 import { CDN_URL, NON_VEG_ICON, VEG_ICON } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const CategoryItems = ({ items }) => {
+  const dispatch = useDispatch();
+
   return (
     <>
       {items.map((item, i) => (
@@ -34,12 +41,37 @@ const CategoryItems = ({ items }) => {
                 />
               </div>
               <div className="absolute left-12 top-[105px]">
-                <button className="bg-white text-[#1ba672] font-bold shadow-lg px-4 py-2 rounded-lg">
+                <button
+                  className="bg-white text-[#1ba672] font-bold shadow-lg px-4 py-2 rounded-lg"
+                  onClick={() => {
+                    dispatch(addItem(item));
+                    toast.success(item.card.info.name + " added to cart", {
+                      position: "bottom-right",
+                      autoClose: 2000,
+                      hideProgressBar: true,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                    });
+                  }}
+                >
                   ADD
                 </button>
               </div>
             </div>
           </div>
+          <ToastContainer
+            position="bottom-right"
+            autoClose={2000}
+            hideProgressBar
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss={false}
+            draggable
+            pauseOnHover
+          />
           <div className="border px-10 my-6" />
         </>
       ))}

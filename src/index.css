@@ -13,3 +13,7 @@
     border-bottom-left-radius: 36px;
     border-bottom-right-radius: 36px;
 }
+
+.cart-height{
+    height: calc(100vh - 89px);
+}
