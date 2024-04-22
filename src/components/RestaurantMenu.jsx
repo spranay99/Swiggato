@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CDN_URL, MENU_API } from "../utils/constants.js";
 import RestaurantCategories from "./RestaurantCategories.jsx";
+import MenuPageShimmer from "./MenuPageShimmer.jsx";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
@@ -32,9 +33,7 @@ const RestaurantMenu = () => {
   } = restaurantDetails;
 
   return restaurantDetails.length == 0 ? (
-    <center>
-      <h1>Loading</h1>
-    </center>
+    <MenuPageShimmer />
   ) : (
     <>
       <div className="max-w-[900px] mx-auto">
