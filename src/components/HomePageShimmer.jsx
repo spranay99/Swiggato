@@ -1,4 +1,5 @@
 import React from "react";
+import { LOADING_GIF } from "../utils/constants";
 
 const HomePageShimmer = () => {
   return (
@@ -7,7 +8,7 @@ const HomePageShimmer = () => {
         <div>
           <img
             className="w-28 h-28 rounded-full"
-            src="https://static.wixstatic.com/media/86db9f_8068af7e0840429baadcc64cbf155c0f~mv2.gif"
+            src={LOADING_GIF}
             alt="Loading icon"
           />
         </div>

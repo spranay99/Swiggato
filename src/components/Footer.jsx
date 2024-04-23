@@ -1,20 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Logo from "../../public/images/logo.png";
+import { aboutCompany, contact, locations } from "../utils/constants";
 
 const Footer = () => {
-  const aboutCompany = ["About", "Team", "Careers"];
-
-  const contact = ["Help & Support", "Partner with us", "Ride with us"];
-
-  const locations = [
-    "Mumbai",
-    "Pune",
-    "Banglore",
-    "Gurgaon",
-    "Hyderabad",
-    "Delhi",
-  ];
-
   return (
     <footer className="bg-[#02060c] text-white ">
       <div className="max-w-[1200px] mx-auto p-10">
@@ -22,15 +11,12 @@ const Footer = () => {
           <ul className="flex flex-col ">
             <li className="flex items-center">
               <Link to="/">
-                <img
-                  src="../public/images/icon.png"
-                  className="w-6 inline mr-3"
-                />
+                <img src={Logo} alt="logo" className="w-6 inline mr-3" />
               </Link>
               <span className="font-semibold text-2xl">Swiggato</span>
             </li>
             <li className="text-gray-400 my-2">
-              &copy; 2024 Mac Technologies <br /> Pvt. Ltd
+              &copy; 2024 PS Technologies <br /> Pvt. Ltd
             </li>
           </ul>
           <ul className="flex flex-col">

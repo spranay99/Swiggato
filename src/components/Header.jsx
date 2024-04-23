@@ -6,6 +6,7 @@ import { IoHelpBuoyOutline } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import Logo from "../../public/images/logo.png";
 import { useSelector } from "react-redux";
 
 const Header = () => {
@@ -59,12 +60,7 @@ const Header = () => {
         <div className="max-w-[1200px] mx-auto  flex items-center">
           <Link to="/">
             <div className="w-[40px] mx-8">
-              <img
-                className="w-full"
-                // src="https://1000logos.net/wp-content/uploads/2021/05/Swiggy-emblem.png"
-                src="../public/images/icon.png"
-                alt="logo"
-              />
+              <img className="w-full" src={Logo} alt="logo" />
             </div>
           </Link>
           <div className="cursor-pointer">
@@ -78,7 +74,7 @@ const Header = () => {
               className="inline text-[#fc8019]"
             />
           </div>
-          <nav className="flex list-none gap-12 ml-auto font-semibold text-[18px]">
+          <ul className="flex list-none gap-12 ml-auto font-semibold text-[18px]">
             {links.map((link, index) => (
               <li
                 key={index}
@@ -95,7 +91,7 @@ const Header = () => {
                 <span>Cart</span>
               </li>
             </Link>
-          </nav>
+          </ul>
         </div>
       </header>
     </>
