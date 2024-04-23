@@ -2,18 +2,19 @@ import React from "react";
 import { CDN_URL, NON_VEG_ICON, VEG_ICON } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { addItem } from "../utils/cartSlice";
-import { ToastContainer, toast } from "react-toastify";
-
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const CategoryItems = ({ items }) => {
   const dispatch = useDispatch();
 
   return (
     <>
-      {items.map((item, i) => (
+      {items.map((item) => (
         <>
-          <div className="px-6 pt-1 flex justify-between gap-10" key={i}>
+          <div
+            className="px-6 pt-1 flex justify-between gap-10"
+            key={item.card.info.id}
+          >
             <div>
               <div className="w-6 h-6">
                 <img
@@ -53,6 +54,7 @@ const CategoryItems = ({ items }) => {
                       pauseOnHover: true,
                       draggable: true,
                       progress: undefined,
+                      theme: "dark",
                     });
                   }}
                 >
@@ -61,17 +63,6 @@ const CategoryItems = ({ items }) => {
               </div>
             </div>
           </div>
-          <ToastContainer
-            position="bottom-right"
-            autoClose={2000}
-            hideProgressBar
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss={false}
-            draggable
-            pauseOnHover
-          />
           <div className="border px-10 my-6" />
         </>
       ))}

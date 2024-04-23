@@ -9,6 +9,8 @@ import RestaurantMenu from "./components/RestaurantMenu.jsx";
 import { Provider } from "react-redux";
 import store from "./utils/store.js";
 import Cart from "./components/Cart.jsx";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AppLayout = () => {
   return (
@@ -16,6 +18,17 @@ const AppLayout = () => {
       <Provider store={store}>
         <Header />
         <Outlet />
+        <ToastContainer
+          position="bottom-right"
+          autoClose={2000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover
+        />
       </Provider>
     </>
   );
