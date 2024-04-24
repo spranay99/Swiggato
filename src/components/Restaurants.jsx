@@ -3,19 +3,27 @@ import RestaurantCard, { withVegLabel } from "./RestaurantCard";
 import { RESTAURANT_LIST } from "../utils/constants";
 import HomePageShimmer from "./HomePageShimmer";
 import Categories from "./Categories";
+import { scrollToTop } from "../utils/helper";
+import { useSelector } from "react-redux";
 
 const Restaurants = () => {
   const [restaurantsList, setRestaurantsList] = useState([]);
+  const currentLocation = useSelector((store) => store.location.loc);
 
   const VegRestaurantCard = withVegLabel(RestaurantCard);
 
   useEffect(() => {
     fetchRestaurants();
-  }, []);
+    scrollToTop();
+  }, [currentLocation]);
 
   const fetchRestaurants = async () => {
     try {
-      const data = await fetch(RESTAURANT_LIST);
+      const data = await fetch(
+        currentLocation !== null
+          ? `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${currentLocation.latitude}&lng=${currentLocation.longitude}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
+          : RESTAURANT_LIST
+      );
       const json = await data.json();
       setRestaurantsList(
         json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
@@ -32,7 +40,7 @@ const Restaurants = () => {
       <Categories />
       <div className="max-w-[1200px] mx-auto mb-10">
         <div className="text-[25px] font-extrabold">
-          Restaurants with online food delivery in Mumbai
+          Restaurants with online food delivery in {currentLocation.city}
         </div>
         <div className="flex gap-8 my-5">
           <button className="border p-2 shadow-sm rounded-2xl">

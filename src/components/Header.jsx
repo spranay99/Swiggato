@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RxCaretDown } from "react-icons/rx";
 import { IoIosSearch } from "react-icons/io";
 import { RiDiscountPercentLine } from "react-icons/ri";
@@ -7,12 +7,19 @@ import { FaRegUser } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import Logo from "../../public/images/logo.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { GrHistory } from "react-icons/gr";
+
+import { locationObject } from "../utils/constants";
+import { currentLocation } from "../utils/locationSlice";
 
 const Header = () => {
   const [toggle, setToggle] = useState(false);
 
   const cartItems = useSelector((store) => store.cart.items);
+  const currentLoc = useSelector((store) => store.location.loc);
+
+  const dispatch = useDispatch();
 
   const setSideToggle = () => {
     setToggle(!toggle);
@@ -49,12 +56,33 @@ const Header = () => {
         onClick={setSideToggle}
       >
         <div
-          className="w-[500px] h-full bg-white duration-[400ms] absolute"
+          className="w-[500px] h-full bg-white duration-[400ms] absolute flex items-center p-10 overflow-y-scroll flex-col"
           style={{
             left: toggle ? "0%" : "-100%",
           }}
           onClick={(e) => e.stopPropagation()}
-        ></div>
+        >
+          {locationObject.map((loc) => (
+            <div
+              key={loc.lid}
+              className="flex items-center w-2/3 gap-4 pl-8 py-2 border m-1 border-red-600 group cursor-pointer"
+              onClick={() => {
+                dispatch(currentLocation(loc));
+                setSideToggle(!toggle);
+              }}
+            >
+              <div>
+                <GrHistory />
+              </div>
+              <div className="px-5 py-2 my-3 cursor-pointer">
+                <div className="group-hover:text-[#fc8019] font-semibold">
+                  {loc.city}
+                </div>
+                <div>{loc.state}</div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
       <header className="p-[15px] shadow-xl text-[#686b78] sticky top-0 bg-white z-20">
         <div className="max-w-[1200px] mx-auto  flex items-center">
@@ -63,16 +91,12 @@ const Header = () => {
               <img className="w-full" src={Logo} alt="logo" />
             </div>
           </Link>
-          <div className="cursor-pointer">
-            <span className="font-bold border-b-[3px] border-black ">
+          <div className="cursor-pointer group" onClick={setSideToggle}>
+            <span className="font-bold border-b-[3px] border-black group-hover:text-[#fc8019]">
               Other
             </span>{" "}
-            Mumbai, Maharashtra, India
-            <RxCaretDown
-              onClick={setSideToggle}
-              fontSize={25}
-              className="inline text-[#fc8019]"
-            />
+            {currentLoc.city} {currentLoc.state}
+            <RxCaretDown fontSize={25} className="inline text-[#fc8019]" />
           </div>
           <ul className="flex list-none gap-12 ml-auto font-semibold text-[18px]">
             {links.map((link, index) => (

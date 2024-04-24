@@ -4,6 +4,7 @@ import { CDN_URL, LOCATION_ICON, MENU_API } from "../utils/constants.js";
 import RestaurantCategories from "./RestaurantCategories.jsx";
 import MenuPageShimmer from "./MenuPageShimmer.jsx";
 import StarIcon from "./StarIcon.jsx";
+import { scrollToTop } from "../utils/helper.js";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
@@ -12,6 +13,7 @@ const RestaurantMenu = () => {
 
   useEffect(() => {
     fetchMenu();
+    scrollToTop();
   }, []);
 
   const fetchMenu = async () => {
