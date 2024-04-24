@@ -3,16 +3,19 @@ import { useState } from "react";
 import { RxCaretUp, RxCaretDown } from "react-icons/rx";
 import CategoryItems from "./CategoryItems";
 
-const RestaurantCategories = ({ category }) => {
+const RestaurantCategories = ({ category, isSubAccordion }) => {
   const [toggle, setToggle] = useState(false);
-
   return (
     <div>
       <div
         className="flex justify-between px-4 my-4 cursor-pointer"
         onClick={() => setToggle(!toggle)}
       >
-        <div className="font-bold text-lg">
+        <div
+          className={
+            isSubAccordion ? "font-medium text-md" : "font-bold text-lg"
+          }
+        >
           {category.title} ({category.itemCards.length})
         </div>
         <div>

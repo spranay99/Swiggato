@@ -92,15 +92,30 @@ const RestaurantMenu = () => {
         </div>
         <hr />
         <div>
-          {restaurantMenu
-            .filter(
-              (c) =>
-                c.card.card?.["@type"] ===
-                "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
-            )
-            .map((category, index) => (
-              <RestaurantCategories key={index} category={category.card.card} />
-            ))}
+          {restaurantMenu.map((c, index) => {
+            const accordion = c.card.card;
+
+            if (accordion?.itemCards) {
+              return <RestaurantCategories key={index} category={accordion} />;
+            } else {
+              return (
+                <div key={index}>
+                  <div className="font-bold text-lg px-4 my-4">
+                    {accordion.title}
+                  </div>
+                  {accordion?.categories?.map((subAccordion, sindex) => {
+                    return (
+                      <RestaurantCategories
+                        key={sindex}
+                        category={subAccordion}
+                        isSubAccordion={true}
+                      />
+                    );
+                  })}
+                </div>
+              );
+            }
+          })}
         </div>
         <div className="bg-[#dfdfe7] p-4 pb-44 text-gray-400">
           {restaurantMenu
