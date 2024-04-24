@@ -5,17 +5,18 @@ import { RiDiscountPercentLine } from "react-icons/ri";
 import { IoHelpBuoyOutline } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../public/images/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { GrHistory } from "react-icons/gr";
 
 import { locationObject } from "../utils/constants";
 import { currentLocation } from "../utils/locationSlice";
+import { clearCart } from "../utils/cartSlice";
 
 const Header = () => {
   const [toggle, setToggle] = useState(false);
-
+  const navigate = useNavigate();
   const cartItems = useSelector((store) => store.cart.items);
   const currentLoc = useSelector((store) => store.location.loc);
 
@@ -62,26 +63,30 @@ const Header = () => {
           }}
           onClick={(e) => e.stopPropagation()}
         >
-          {locationObject.map((loc) => (
-            <div
-              key={loc.lid}
-              className="flex items-center w-2/3 gap-4 pl-8 py-2 border m-1 border-red-600 group cursor-pointer"
-              onClick={() => {
-                dispatch(currentLocation(loc));
-                setSideToggle(!toggle);
-              }}
-            >
-              <div>
-                <GrHistory />
-              </div>
-              <div className="px-5 py-2 my-3 cursor-pointer">
-                <div className="group-hover:text-[#fc8019] font-semibold">
-                  {loc.city}
+          <div className=" w-2/3">
+            {locationObject.map((loc) => (
+              <div
+                key={loc.lid}
+                className="flex items-center gap-4 pl-8 py-2 border-b-2 group cursor-pointer w-full"
+                onClick={() => {
+                  dispatch(currentLocation(loc));
+                  dispatch(clearCart());
+                  setSideToggle(!toggle);
+                  navigate("/");
+                }}
+              >
+                <div>
+                  <GrHistory />
                 </div>
-                <div>{loc.state}</div>
+                <div className="px-5 py-2 my-3 cursor-pointer">
+                  <div className="group-hover:text-[#fc8019] font-semibold">
+                    {loc.city}
+                  </div>
+                  <div>{loc.state}</div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
       <header className="p-[15px] shadow-xl text-[#686b78] sticky top-0 bg-white z-20">
@@ -92,10 +97,13 @@ const Header = () => {
             </div>
           </Link>
           <div className="cursor-pointer group" onClick={setSideToggle}>
-            <span className="font-bold border-b-[3px] border-black group-hover:text-[#fc8019]">
+            <span className="font-bold border-b-[3px] border-black group-hover:text-[#fc8019] group-hover:border-[#fc8019]">
               Other
             </span>{" "}
-            {currentLoc.city} {currentLoc.state}
+            <span className="group-hover:opacity-90">
+              {currentLoc.city}
+              {", "} {currentLoc.state}
+            </span>
             <RxCaretDown fontSize={25} className="inline text-[#fc8019]" />
           </div>
           <ul className="flex list-none gap-12 ml-auto font-semibold text-[18px]">

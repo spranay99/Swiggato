@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { CDN_URL, LOCATION_ICON, MENU_API } from "../utils/constants.js";
 import RestaurantCategories from "./RestaurantCategories.jsx";
 import MenuPageShimmer from "./MenuPageShimmer.jsx";
@@ -42,7 +42,7 @@ const RestaurantMenu = () => {
       <div className="max-w-[900px] mx-auto">
         <div className="my-6">
           <p className="font-medium text-sm">
-            Home / {city} / {name}
+            <Link to={"/"}>Home</Link> / {city} / {name}
           </p>
         </div>
         <div className="p-3 my-5">

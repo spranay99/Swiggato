@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart, removeItem } from "../utils/cartSlice";
 import { toast } from "react-toastify";
+import { scrollToTop } from "../utils/helper";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
@@ -13,6 +14,7 @@ const Cart = () => {
 
   useEffect(() => {
     calculateTotal();
+    scrollToTop();
   }, [cartItems]);
 
   const calculateTotal = () => {
