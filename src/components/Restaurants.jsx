@@ -12,6 +12,8 @@ const Restaurants = () => {
 
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
+  const [searchRestaurants, setSearchRestaurants] = useState("");
+
   //state for making active button
   const [activeButton, setActiveButton] = useState("button1");
 
@@ -21,6 +23,23 @@ const Restaurants = () => {
     fetchRestaurants();
     scrollToTop();
   }, [currentLocation]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      handleSearchRestaurants();
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [searchRestaurants]);
+
+  const handleSearchRestaurants = () => {
+    const searchedRestaurants = restaurantsList.filter((rest) =>
+      rest.info.name.toLowerCase().includes(searchRestaurants.toLowerCase())
+    );
+    setFilteredRestaurants(searchedRestaurants);
+  };
 
   const fetchRestaurants = async () => {
     try {
@@ -170,6 +189,13 @@ const Restaurants = () => {
           >
             Rs. 300 - Rs. 600
           </button>
+          <input
+            className="border p-2 shadow-sm rounded-2xl"
+            type="text"
+            placeholder="Search Restaurants..."
+            value={searchRestaurants}
+            onChange={(e) => setSearchRestaurants(e.target.value)}
+          ></input>
         </div>
 
         <div className="grid grid-cols-4 gap-3">

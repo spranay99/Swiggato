@@ -17,6 +17,18 @@ const HomePageShimmer = () => {
         </div>
       </div>
       <div className="max-w-[1200px] mx-auto">
+        <div className="flex gap-8 my-5">
+          {Array(5)
+            .fill("")
+            .map((elem, id) => {
+              return (
+                <div
+                  key={id}
+                  className="border py-2 px-3 shadow-sm rounded-[18px] bg-gradient-to-r from-gray-200 to-gray-500 w-28 h-12"
+                ></div>
+              );
+            })}
+        </div>
         <div className="grid grid-cols-4 gap-3 mt-10 animate-pulse">
           {Array(8)
             .fill("")

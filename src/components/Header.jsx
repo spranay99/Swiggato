@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { RxCaretDown } from "react-icons/rx";
 import { IoIosSearch } from "react-icons/io";
 import { RiDiscountPercentLine } from "react-icons/ri";
