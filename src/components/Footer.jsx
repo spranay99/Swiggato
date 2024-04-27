@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <footer className="bg-[#02060c] text-white ">
       <div className="max-w-[1200px] mx-auto p-10">
-        <div className="grid grid-cols-4">
+        <div className="grid grid-cols-1 lg:grid-cols-4 sm:grid-cols-2">
           <ul className="flex flex-col ">
             <li className="flex items-center">
               <Link to="/">

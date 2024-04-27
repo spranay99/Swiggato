@@ -14,6 +14,9 @@ import { locationObject } from "../utils/constants";
 import { currentLocation } from "../utils/locationSlice";
 import { clearCart } from "../utils/cartSlice";
 
+import { GiHamburgerMenu } from "react-icons/gi";
+import { GrClose } from "react-icons/gr";
+
 const Header = () => {
   const [toggle, setToggle] = useState(false);
   const navigate = useNavigate();
@@ -57,13 +60,16 @@ const Header = () => {
         onClick={setSideToggle}
       >
         <div
-          className="w-[500px] h-full bg-white duration-[400ms] absolute flex items-center p-10 overflow-y-scroll flex-col"
+          className="w-[375px] md:w-[400px] md:p-6 h-full bg-white duration-[400ms] absolute flex items-center p-2 overflow-y-scroll flex-col"
           style={{
             left: toggle ? "0%" : "-100%",
           }}
           onClick={(e) => e.stopPropagation()}
         >
           <div className=" w-2/3">
+            <div className="pl-2 py-2 md:hidden">
+              <GrClose onClick={setSideToggle} />
+            </div>
             {locationObject.map((loc) => (
               <div
                 key={loc.lid}
@@ -90,23 +96,23 @@ const Header = () => {
         </div>
       </div>
       <header className="p-[15px] shadow-xl text-[#686b78] sticky top-0 bg-white z-20">
-        <div className="max-w-[1200px] mx-auto  flex items-center">
+        <div className="max-w-[1200px] mx-auto flex items-center justify-between">
           <Link to="/">
-            <div className="w-[40px] mx-8">
+            <div className="md:w-[40px] w-[25px] mx-8">
               <img className="w-full" src={Logo} alt="logo" />
             </div>
           </Link>
-          <div className="cursor-pointer group" onClick={setSideToggle}>
-            <span className="font-bold border-b-[3px] border-black group-hover:text-[#fc8019] group-hover:border-[#fc8019]">
+          <div className="cursor-pointer group sm:" onClick={setSideToggle}>
+            <span className="sm:text-[15px] text-xs font-bold border-b-[3px] border-black group-hover:text-[#fc8019] group-hover:border-[#fc8019]">
               Other
             </span>{" "}
-            <span className="group-hover:opacity-90">
+            <span className="group-hover:opacity-90 sm:text-[15px] text-xs">
               {currentLoc.city}
               {", "} {currentLoc.state}
             </span>
             <RxCaretDown fontSize={25} className="inline text-[#fc8019]" />
           </div>
-          <ul className="flex list-none gap-12 ml-auto font-semibold text-[18px]">
+          <ul className="lg:flex hidden list-none gap-12 ml-auto font-semibold ">
             {links.map((link, index) => (
               <li
                 key={index}
@@ -123,6 +129,9 @@ const Header = () => {
                 <span>Cart</span>
               </li>
             </Link>
+          </ul>
+          <ul className="lg:hidden block">
+            <GiHamburgerMenu fontSize={25} />
           </ul>
         </div>
       </header>

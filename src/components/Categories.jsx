@@ -16,7 +16,7 @@ const Categories = () => {
   };
 
   return (
-    <div className="max-w-[1200px] mx-auto">
+    <div className="max-w-[1200px] mx-auto p-[15px]">
       <div className="flex items-center justify-between my-3">
         <div className="text-[25px] font-extrabold">What's on your mind?</div>
         <div className="flex">

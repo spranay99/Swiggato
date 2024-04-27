@@ -39,7 +39,7 @@ const RestaurantMenu = () => {
     <MenuPageShimmer />
   ) : (
     <>
-      <div className="max-w-[900px] mx-auto">
+      <div className="max-w-[900px] mx-auto p-[15px]">
         <div className="my-6">
           <p className="font-medium text-sm">
             <Link to={"/"}>Home</Link> / {city} / {name}

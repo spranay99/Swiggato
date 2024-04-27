@@ -47,7 +47,7 @@ const Cart = () => {
       </div>
     </div>
   ) : (
-    <div className="max-w-[900px] mx-auto">
+    <div className="max-w-[900px] mx-auto p-[15px]">
       <div className="flex justify-between">
         <div className="text-[25px] font-extrabold m-5">Cart Items</div>
         <div
@@ -72,7 +72,10 @@ const Cart = () => {
 
       {cartItems.map((item, i) => (
         <>
-          <div className="px-6 pt-1 flex justify-between gap-10" key={i}>
+          <div
+            className="px-6 pt-1 flex md:flex-row md:justify-between flex-col-reverse gap-10"
+            key={i}
+          >
             <div>
               <div className="w-6 h-6">
                 <img
@@ -92,7 +95,7 @@ const Cart = () => {
               </div>
               <div>{item.card.info.description}</div>
             </div>
-            <div className="relative">
+            <div className="relative mx-auto">
               <div className="w-40 h-32">
                 <img
                   src={CDN_URL + item.card.info.imageId}

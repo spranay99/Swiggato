@@ -7,17 +7,17 @@ const HomePageShimmer = () => {
       <div className="w-full h-80 bg-gray-300 flex items-center justify-center flex-col gap-7">
         <div>
           <img
-            className="w-28 h-28 rounded-full"
+            className="md:w-28 md:h-28 h-20 w-20 rounded-full"
             src={LOADING_GIF}
             alt="Loading icon"
           />
         </div>
-        <div className="font-semibold text-4xl text-blue-950">
+        <div className="font-semibold text-xl md:text-4xl text-blue-950">
           Looking for great food near you...
         </div>
       </div>
-      <div className="max-w-[1200px] mx-auto">
-        <div className="flex gap-8 my-5">
+      <div className="max-w-[1200px] mx-auto p-[15px]">
+        <div className="flex gap-8 my-5 flex-wrap">
           {Array(5)
             .fill("")
             .map((elem, id) => {
@@ -29,7 +29,7 @@ const HomePageShimmer = () => {
               );
             })}
         </div>
-        <div className="grid grid-cols-4 gap-3 mt-10 animate-pulse">
+        <div className="grid grid-cols-1 lg:grid-cols-4 sm:grid-cols-2 gap-3 place-items-center mt-10 animate-pulse">
           {Array(8)
             .fill("")
             .map((card, id) => {

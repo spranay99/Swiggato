@@ -12,7 +12,7 @@ const CategoryItems = ({ items }) => {
       {items.map((item) => (
         <>
           <div
-            className="px-6 pt-1 flex justify-between gap-10"
+            className="px-6 pt-1 flex flex-col-reverse md:flex-row md:justify-between gap-10 "
             key={item.card.info.id}
           >
             <div>
@@ -34,10 +34,14 @@ const CategoryItems = ({ items }) => {
               </div>
               <div>{item.card.info.description}</div>
             </div>
-            <div className="relative">
+            <div className="relative mx-auto">
               <div className="w-40 h-32">
                 <img
-                  src={CDN_URL + item.card.info.imageId}
+                  src={
+                    item.card.info.imageId
+                      ? CDN_URL + item.card.info.imageId
+                      : "https://www.facoelche.com/images/placeholder-noimage.jpg"
+                  }
                   className="rounded-2xl w-full h-full object-cover"
                 />
               </div>

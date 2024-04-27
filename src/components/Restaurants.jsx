@@ -106,13 +106,13 @@ const Restaurants = () => {
   ) : (
     <>
       <Categories />
-      <div className="max-w-[1200px] mx-auto mb-10">
+      <div className="max-w-[1200px] mx-auto mb-10 p-[15px]">
         <div className="text-[25px] font-extrabold">
           Restaurants with online food delivery in {currentLocation.city}
         </div>
-        <div className="flex gap-8 my-5">
+        <div className="flex-wrap md:flex gap-8 my-5">
           <button
-            className={`border py-2 px-3 shadow-sm rounded-[18px] ${
+            className={`border py-2 px-3 mx-1 shadow-sm rounded-[18px] ${
               activeButton === "button1"
                 ? "border-4 font-bold text-[#fc8019]"
                 : ""
@@ -125,7 +125,7 @@ const Restaurants = () => {
             Clear Filter
           </button>
           <button
-            className={`border p-2 shadow-sm rounded-2xl ${
+            className={`border p-2 mx-1 shadow-sm rounded-2xl ${
               activeButton === "button2"
                 ? "border-4 font-bold text-[#fc8019]"
                 : ""
@@ -138,7 +138,7 @@ const Restaurants = () => {
             Fast Delivery
           </button>
           <button
-            className={`border p-2 shadow-sm rounded-2xl ${
+            className={`border p-2 mx-1 shadow-sm rounded-2xl ${
               activeButton === "button3"
                 ? "border-4 font-bold text-[#fc8019]"
                 : ""
@@ -151,7 +151,7 @@ const Restaurants = () => {
             Ratings 4.0+
           </button>
           <button
-            className={`border p-2 shadow-sm rounded-2xl ${
+            className={`border p-2 mx-1 shadow-sm rounded-2xl ${
               activeButton === "button4"
                 ? "border-4 font-bold text-[#fc8019]"
                 : ""
@@ -164,7 +164,7 @@ const Restaurants = () => {
             Pure Veg
           </button>
           <button
-            className={`border p-2 shadow-sm rounded-2xl ${
+            className={`border p-2 mx-1 shadow-sm rounded-2xl ${
               activeButton === "button5"
                 ? "border-4 font-bold text-[#fc8019]"
                 : ""
@@ -177,7 +177,7 @@ const Restaurants = () => {
             Less than Rs. 300
           </button>
           <button
-            className={`border p-2 shadow-sm rounded-2xl ${
+            className={`border p-2 mx-1 shadow-sm rounded-2xl ${
               activeButton === "button6"
                 ? "border-4 font-bold text-[#fc8019]"
                 : ""
@@ -190,7 +190,7 @@ const Restaurants = () => {
             Rs. 300 - Rs. 600
           </button>
           <input
-            className="border p-2 shadow-sm rounded-2xl"
+            className="border p-2 mx-1 shadow-sm rounded-2xl"
             type="text"
             placeholder="Search Restaurants..."
             value={searchRestaurants}
@@ -198,7 +198,7 @@ const Restaurants = () => {
           ></input>
         </div>
 
-        <div className="grid grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 lg:grid-cols-4 sm:grid-cols-2 gap-3 place-items-center px-[15px]">
           {filteredRestaurants.map((restaurant) => (
             <React.Fragment key={restaurant.info.id}>
               {restaurant.info.veg ? (
