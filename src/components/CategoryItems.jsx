@@ -1,11 +1,44 @@
 import React from "react";
 import { CDN_URL, NON_VEG_ICON, VEG_ICON } from "../utils/constants";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../utils/cartSlice";
 import { toast } from "react-toastify";
 
 const CategoryItems = ({ items }) => {
   const dispatch = useDispatch();
+
+  const cartItems = useSelector((store) => store.cart.items);
+
+  const handleAddItem = (item) => {
+    const isItemInCart = cartItems.some(
+      (cartItem) => cartItem?.card?.info?.id === item?.card?.info?.id
+    );
+
+    if (isItemInCart) {
+      toast.error(item.card.info.name + " already in cart!", {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    } else {
+      dispatch(addItem(item));
+      toast.success(item.card.info.name + " added to cart", {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+  };
 
   return (
     <>
@@ -48,19 +81,7 @@ const CategoryItems = ({ items }) => {
               <div className="absolute left-12 top-[105px]">
                 <button
                   className="bg-white text-[#1ba672] font-bold shadow-lg px-4 py-2 rounded-lg"
-                  onClick={() => {
-                    dispatch(addItem(item));
-                    toast.success(item.card.info.name + " added to cart", {
-                      position: "bottom-right",
-                      autoClose: 2000,
-                      hideProgressBar: true,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                      theme: "dark",
-                    });
-                  }}
+                  onClick={() => handleAddItem(item)}
                 >
                   ADD
                 </button>

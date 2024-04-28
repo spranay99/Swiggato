@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../public/images/logo.png";
-import { aboutCompany, contact, locations } from "../utils/constants";
-import { locationObject } from "../utils/constants";
+import { aboutCompany, contact, locationObject } from "../utils/constants";
 
 const Footer = () => {
   return (

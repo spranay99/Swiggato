@@ -2,15 +2,6 @@ export const aboutCompany = ["About", "Team", "Careers"];
 
 export const contact = ["Help & Support", "Partner with us", "Ride with us"];
 
-export const locations = [
-  "Mumbai",
-  "Pune",
-  "Banglore",
-  "Gurgaon",
-  "Hyderabad",
-  "Delhi",
-];
-
 export const locationObject = [
   {
     lid: 1,

@@ -70,11 +70,11 @@ const Cart = () => {
         </div>
       </div>
 
-      {cartItems.map((item, i) => (
+      {cartItems.map((item) => (
         <>
           <div
             className="px-6 pt-1 flex md:flex-row md:justify-between flex-col-reverse gap-10"
-            key={i}
+            key={item.card.info.id}
           >
             <div>
               <div className="w-6 h-6">
@@ -127,8 +127,20 @@ const Cart = () => {
           <div className="border px-10 my-6" />
         </>
       ))}
-      <div className="bg-[#dfdfe7] p-4 h-44 font-bold text-black">
-        To Pay: ₹ <span className="">{totalCost}</span>
+      <div className="shadow-lg p-4 h-44 font-bold text-black">
+        <div className="text-xl">Bill Details</div>
+        <div className="flex justify-between">
+          <div>Item Total : </div>
+          <div>₹ {totalCost}</div>
+        </div>
+        <div className="border-2 px-10 my-2" />
+        <div className="flex justify-between">
+          <div>To Pay: </div>
+          <div> ₹ {totalCost}</div>
+        </div>
+        <div className="w-72 mx-auto text-center p-2 bg-[#fc8019] my-2 text-white font-semibold cursor-pointer">
+          Proceed to Pay
+        </div>
       </div>
     </div>
   );

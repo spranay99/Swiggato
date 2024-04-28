@@ -4,26 +4,12 @@ import { CDN_URL, LOCATION_ICON, MENU_API } from "../utils/constants.js";
 import RestaurantCategories from "./RestaurantCategories.jsx";
 import MenuPageShimmer from "./MenuPageShimmer.jsx";
 import StarIcon from "./StarIcon.jsx";
-import { scrollToTop } from "../utils/helper.js";
+import useRestaurantMenu from "../utils/useRestaurantMenu.jsx";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
-  const [restaurantDetails, setRestaurantDetails] = useState([]);
-  const [restaurantMenu, setRestaurantMenu] = useState([]);
 
-  useEffect(() => {
-    fetchMenu();
-    scrollToTop();
-  }, []);
-
-  const fetchMenu = async () => {
-    const response = await fetch(MENU_API + resId);
-    const json = await response.json();
-    setRestaurantMenu(
-      json.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards
-    );
-    setRestaurantDetails(json.data.cards[2].card.card.info);
-  };
+  const [restaurantMenu, restaurantDetails] = useRestaurantMenu(resId);
 
   const {
     name,

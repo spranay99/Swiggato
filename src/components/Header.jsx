@@ -19,6 +19,7 @@ import { GrClose } from "react-icons/gr";
 
 const Header = () => {
   const [toggle, setToggle] = useState(false);
+  const [navToggle, setNavToggle] = useState(false);
   const navigate = useNavigate();
   const cartItems = useSelector((store) => store.cart.items);
   const currentLoc = useSelector((store) => store.location.loc);
@@ -27,6 +28,10 @@ const Header = () => {
 
   const setSideToggle = () => {
     setToggle(!toggle);
+  };
+
+  const setNavbarToggle = () => {
+    setNavToggle(!navToggle);
   };
 
   const links = [
@@ -55,7 +60,7 @@ const Header = () => {
         style={{
           opacity: toggle ? 1 : 0,
           visibility: toggle ? "visible" : "hidden",
-          zIndex: 999999,
+          zIndex: 99,
         }}
         onClick={setSideToggle}
       >
@@ -124,17 +129,57 @@ const Header = () => {
             ))}
             <Link to="/cart">
               <li className="flex items-center gap-2 cursor-pointer hover:text-[#fc8019]">
-                {/* <FiShoppingCart /> */}
+                <FiShoppingCart />
                 <span>[{cartItems.length}]</span>
                 <span>Cart</span>
               </li>
             </Link>
           </ul>
           <ul className="lg:hidden block">
-            <GiHamburgerMenu fontSize={25} />
+            {navToggle ? (
+              <GrClose fontSize={25} onClick={setNavbarToggle} />
+            ) : (
+              <GiHamburgerMenu fontSize={25} onClick={setNavbarToggle} />
+            )}
           </ul>
         </div>
       </header>
+      <div
+        className="background-overlay w-full h-full fixed duration-500"
+        style={{
+          opacity: navToggle ? 1 : 0,
+          visibility: navToggle ? "visible" : "hidden",
+          zIndex: 99,
+        }}
+        onClick={setNavbarToggle}
+      >
+        <div
+          className="w-full md:p-6 bg-white duration-[700ms] absolute flex items-center p-2 flex-col"
+          style={{
+            right: toggle ? "100%" : "0%",
+          }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="w-2/3">
+            {links.map((link, index) => (
+              <li
+                key={index}
+                className="flex items-center justify-center gap-2 cursor-pointer hover:text-[#fc8019] my-2"
+              >
+                {link.icon}
+                {link.name}
+              </li>
+            ))}
+            <Link to="/cart">
+              <li className="flex items-center justify-center gap-2 cursor-pointer hover:text-[#fc8019]">
+                <FiShoppingCart />
+                <span>[{cartItems.length}]</span>
+                <span>Cart</span>
+              </li>
+            </Link>
+          </div>
+        </div>
+      </div>
     </>
   );
 };
