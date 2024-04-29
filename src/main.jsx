@@ -11,6 +11,7 @@ import store from "./utils/store.js";
 import Cart from "./components/Cart.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Error from "./components/Error.jsx";
 
 const AppLayout = () => {
   return (
@@ -38,6 +39,7 @@ const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",

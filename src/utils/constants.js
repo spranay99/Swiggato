@@ -136,3 +136,6 @@ export const NON_VEG_ICON =
 
 export const LOCATION_ICON =
   "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Ei-location.svg/2048px-Ei-location.svg.png";
+
+export const ERROR_IMG_URL =
+  "https://www.shutterstock.com/image-vector/broken-robot-hand-drawn-vector-600nw-478917859.jpg";
