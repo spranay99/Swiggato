@@ -1,7 +1,7 @@
 import React from "react";
 import { CDN_URL, NON_VEG_ICON, VEG_ICON } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem } from "../utils/cartSlice";
+import { addItem } from "../redux/cartSlice";
 import { toast } from "react-toastify";
 
 const CategoryItems = ({ items }) => {
@@ -15,7 +15,7 @@ const CategoryItems = ({ items }) => {
     );
 
     if (isItemInCart) {
-      toast.error(item.card.info.name + " already in cart!", {
+      toast.error(item?.card?.info?.name + " already in cart!", {
         position: "bottom-right",
         autoClose: 2000,
         hideProgressBar: true,
@@ -27,7 +27,7 @@ const CategoryItems = ({ items }) => {
       });
     } else {
       dispatch(addItem(item));
-      toast.success(item.card.info.name + " added to cart", {
+      toast.success(item?.card?.info?.name + " added to cart", {
         position: "bottom-right",
         autoClose: 2000,
         hideProgressBar: true,
@@ -43,36 +43,33 @@ const CategoryItems = ({ items }) => {
   return (
     <>
       {items.map((item) => (
-        <>
-          <div
-            className="px-6 pt-1 flex flex-col-reverse md:flex-row md:justify-between gap-10 "
-            key={item.card.info.id}
-          >
+        <React.Fragment key={item?.card?.info?.id}>
+          <div className="px-6 pt-1 flex flex-col-reverse md:flex-row md:justify-between gap-10 ">
             <div>
               <div className="w-6 h-6">
                 <img
                   src={
-                    item.card.info.itemAttribute.vegClassifier == "VEG"
+                    item?.card?.info?.itemAttribute?.vegClassifier == "VEG"
                       ? VEG_ICON
                       : NON_VEG_ICON
                   }
                   className="w-full h-full"
                 />
               </div>
-              <div>{item.card.info.name}</div>
-              <div>
+              <p>{item?.card?.info?.name}</p>
+              <p>
                 ₹{" "}
-                {item.card.info.price / 100 ||
-                  item.card.info.defaultPrice / 100}
-              </div>
-              <div>{item.card.info.description}</div>
+                {item?.card?.info?.price / 100 ||
+                  item?.card?.info?.defaultPrice / 100}
+              </p>
+              <p>{item?.card?.info?.description}</p>
             </div>
-            <div className="relative mx-auto">
+            <div className="relative mx-auto md:mx-0">
               <div className="w-40 h-32">
                 <img
                   src={
-                    item.card.info.imageId
-                      ? CDN_URL + item.card.info.imageId
+                    item?.card?.info?.imageId
+                      ? CDN_URL + item?.card?.info?.imageId
                       : "https://www.facoelche.com/images/placeholder-noimage.jpg"
                   }
                   className="rounded-2xl w-full h-full object-cover"
@@ -89,7 +86,7 @@ const CategoryItems = ({ items }) => {
             </div>
           </div>
           <div className="border px-10 my-6" />
-        </>
+        </React.Fragment>
       ))}
     </>
   );

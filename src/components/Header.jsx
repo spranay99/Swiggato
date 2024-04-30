@@ -11,8 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { GrHistory } from "react-icons/gr";
 
 import { locationObject } from "../utils/constants";
-import { currentLocation } from "../utils/locationSlice";
-import { clearCart } from "../utils/cartSlice";
+import { currentLocation } from "../redux/locationSlice";
+import { clearCart } from "../redux/cartSlice";
 
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GrClose } from "react-icons/gr";
@@ -65,7 +65,7 @@ const Header = () => {
         onClick={setSideToggle}
       >
         <div
-          className="w-[375px] md:w-[400px] md:p-6 h-full bg-white duration-[400ms] absolute flex items-center p-2 overflow-y-scroll flex-col"
+          className="w-[375px] md:w-[450px] md:p-6 h-full bg-white duration-[400ms] absolute flex items-center p-2 overflow-y-scroll flex-col"
           style={{
             left: toggle ? "0%" : "-100%",
           }}

@@ -1,18 +1,15 @@
-import React, { useState } from "react";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa6";
-import { MenuCategories } from "../utils/constants";
 import { CATEGORY_IMG_URL } from "../utils/constants";
 
-const Categories = () => {
-  const [slide, setSlide] = useState(0);
-
-  const nextSlide = () => {
-    if (MenuCategories.length - 8 === slide) return false;
-    setSlide(slide + 4);
+const Categories = ({ carouselImages }) => {
+  const handleScrollLeft = () => {
+    const foodCategory = document.querySelector(".categories");
+    foodCategory.scrollLeft = foodCategory.scrollLeft - 480;
   };
-  const prevSlide = () => {
-    if (slide === 0) return false;
-    setSlide(slide - 4);
+
+  const handleScrollRight = () => {
+    const foodCategory = document.querySelector(".categories");
+    foodCategory.scrollLeft = foodCategory.scrollLeft + 480;
   };
 
   return (
@@ -24,35 +21,27 @@ const Categories = () => {
         <div className="flex">
           <div
             className="flex justify-center items-center cursor-pointer w-[30px] h-[30px] mx-2 bg-[#e2e2e7] rounded-full"
-            onClick={prevSlide}
+            onClick={handleScrollLeft}
           >
             <FaArrowLeft />
           </div>
           <div
             className="flex justify-center items-center cursor-pointer w-[30px] h-[30px] mx-2 bg-[#e2e2e7] rounded-full"
-            onClick={nextSlide}
+            onClick={handleScrollRight}
           >
             <FaArrowRight />
           </div>
         </div>
       </div>
-      <div className="flex overflow-hidden">
-        {MenuCategories.map((category, index) => {
-          return (
-            <div
-              key={index}
-              style={{
-                transform: `translateX(-${slide * 100}%)`,
-              }}
-              className="w-[150px] shrink-0 duration-700"
-            >
-              <img
-                src={CATEGORY_IMG_URL + category.image}
-                alt={category.name}
-              />
-            </div>
-          );
-        })}
+      <div className="categories flex overflow-x-scroll scroll-smooth no-scrollbar">
+        {carouselImages.map((carouselImage) => (
+          <div key={carouselImage?.id} className="w-[160px] shrink-0">
+            <img
+              src={CATEGORY_IMG_URL + carouselImage?.imageId}
+              alt={carouselImage?.accessibility?.altText}
+            />
+          </div>
+        ))}
       </div>
       <hr className="my-6 border" />
     </div>

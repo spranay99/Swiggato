@@ -7,11 +7,11 @@ import Restaurants from "./components/Restaurants";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu.jsx";
 import { Provider } from "react-redux";
-import store from "./utils/store.js";
-import Cart from "./components/Cart.jsx";
+import store from "./redux/store.js";
+import Cart from "./pages/Cart.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Error from "./components/Error.jsx";
+import Error from "./pages/Error.jsx";
 
 const AppLayout = () => {
   return (

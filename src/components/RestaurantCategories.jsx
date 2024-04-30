@@ -16,13 +16,13 @@ const RestaurantCategories = ({ category, isSubAccordion }) => {
             isSubAccordion ? "font-medium text-md" : "font-bold text-lg"
           }
         >
-          {category.title} ({category.itemCards.length})
+          {category?.title} ({category?.itemCards?.length})
         </div>
         <div>
           {toggle ? <RxCaretUp fontSize={30} /> : <RxCaretDown fontSize={30} />}
         </div>
       </div>
-      {toggle && <CategoryItems items={category.itemCards} />}
+      {toggle && <CategoryItems items={category?.itemCards} />}
       <div className="p-2 bg-[#dfdfe7]"></div>
     </div>
   );

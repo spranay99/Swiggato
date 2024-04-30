@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { CDN_URL, NON_VEG_ICON, VEG_ICON } from "../utils/constants";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart, removeItem } from "../utils/cartSlice";
+import { clearCart, removeItem } from "../redux/cartSlice";
 import { toast } from "react-toastify";
 import { scrollToTop } from "../utils/helper";
 
@@ -23,9 +23,9 @@ const Cart = () => {
       setTotalCost(0);
     } else {
       cartItems.map((item) => {
-        let ItemValue = item.card.info.price
-          ? item.card.info.price / 100
-          : item.card.info.defaultPrice / 100;
+        let ItemValue = item?.card?.info?.price
+          ? item?.card?.info?.price / 100
+          : item?.card?.info?.defaultPrice / 100;
         total += ItemValue;
         setTotalCost(Math.floor(total));
       });
@@ -71,34 +71,34 @@ const Cart = () => {
       </div>
 
       {cartItems.map((item) => (
-        <>
+        <React.Fragment key={item?.card?.info?.id}>
           <div
             className="px-6 pt-1 flex md:flex-row md:justify-between flex-col-reverse gap-10"
-            key={item.card.info.id}
+            key={item?.card?.info?.id}
           >
             <div>
               <div className="w-6 h-6">
                 <img
                   src={
-                    item.card.info.itemAttribute.vegClassifier == "VEG"
+                    item?.card?.info?.itemAttribute?.vegClassifier == "VEG"
                       ? VEG_ICON
                       : NON_VEG_ICON
                   }
                   className="w-full h-full"
                 />
               </div>
-              <div>{item.card.info.name}</div>
-              <div>
+              <p>{item?.card?.info?.name}</p>
+              <p>
                 ₹{" "}
-                {item.card.info.price / 100 ||
-                  item.card.info.defaultPrice / 100}
-              </div>
-              <div>{item.card.info.description}</div>
+                {item?.card?.info?.price / 100 ||
+                  item?.card?.info?.defaultPrice / 100}
+              </p>
+              <p>{item?.card?.info?.description}</p>
             </div>
             <div className="relative mx-auto">
               <div className="w-40 h-32">
                 <img
-                  src={CDN_URL + item.card.info.imageId}
+                  src={CDN_URL + item?.card?.info?.imageId}
                   className="rounded-2xl w-full h-full object-cover"
                 />
               </div>
@@ -106,17 +106,20 @@ const Cart = () => {
                 <button
                   className="bg-white text-[#fc8019] font-bold shadow-lg px-4 py-2 rounded-lg"
                   onClick={() => {
-                    dispatch(removeItem(item.card.info));
-                    toast.warning(item.card.info.name + " removed from cart", {
-                      position: "bottom-right",
-                      autoClose: 2000,
-                      hideProgressBar: true,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                      theme: "dark",
-                    });
+                    dispatch(removeItem(item?.card?.info));
+                    toast.warning(
+                      item?.card?.info?.name + " removed from cart",
+                      {
+                        position: "bottom-right",
+                        autoClose: 2000,
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                      }
+                    );
                   }}
                 >
                   DELETE
@@ -125,18 +128,18 @@ const Cart = () => {
             </div>
           </div>
           <div className="border px-10 my-6" />
-        </>
+        </React.Fragment>
       ))}
       <div className="shadow-lg p-4 h-44 font-bold text-black">
-        <div className="text-xl">Bill Details</div>
+        <p className="text-xl">Bill Details</p>
         <div className="flex justify-between">
-          <div>Item Total : </div>
-          <div>₹ {totalCost}</div>
+          <p>Item Total : </p>
+          <p>₹ {totalCost}</p>
         </div>
         <div className="border-2 px-10 my-2" />
         <div className="flex justify-between">
-          <div>To Pay: </div>
-          <div> ₹ {totalCost}</div>
+          <p>To Pay: </p>
+          <p> ₹ {totalCost}</p>
         </div>
         <div className="w-72 mx-auto text-center p-2 bg-[#fc8019] my-2 text-white font-semibold cursor-pointer">
           Proceed to Pay

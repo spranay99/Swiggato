@@ -13,7 +13,13 @@ const RestaurantCard = ({ resList }) => {
     locality,
     cuisines,
     aggregatedDiscountInfoV3,
-  } = resList.info;
+  } = resList?.info;
+
+  const truncateCusines = (cuisineStr) => {
+    return cuisineStr.length > 34
+      ? `${cuisineStr.substring(0, 33)}...`
+      : cuisineStr;
+  };
 
   return (
     <Link to={"/restaurants/" + id}>
@@ -35,10 +41,10 @@ const RestaurantCard = ({ resList }) => {
           </div>
           <div className="flex items-center gap-2">
             <StarIcon /> {avgRating}
-            <span>{sla.slaString}</span>
+            <span>{sla?.slaString}</span>
           </div>
           <div className="text-slate-700">
-            {cuisines.slice(0, 2).join(", ")}
+            {truncateCusines(cuisines.join(", "))}
             <br />
             {locality}
           </div>
