@@ -16,11 +16,11 @@ const HomePageShimmer = () => {
           Looking for great food near you...
         </div>
       </div>
-      <div className="max-w-[1200px] mx-auto p-[15px]">
-        <div className="flex gap-8 my-5 flex-wrap">
+      <div className="max-w-[1200px] mx-auto p-[15px] ">
+        <div className="flex gap-8 my-5 flex-wrap animate-pulse">
           {Array(5)
             .fill("")
-            .map((elem, id) => {
+            .map((__, id) => {
               return (
                 <div
                   key={id}
@@ -32,7 +32,7 @@ const HomePageShimmer = () => {
         <div className="grid grid-cols-1 lg:grid-cols-4 sm:grid-cols-2 gap-3 place-items-center mt-10 animate-pulse">
           {Array(8)
             .fill("")
-            .map((card, id) => {
+            .map((__, id) => {
               return (
                 <React.Fragment key={id}>
                   <div className="w-[273px] mb-3">

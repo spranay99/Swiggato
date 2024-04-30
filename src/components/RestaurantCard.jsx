@@ -30,7 +30,9 @@ const RestaurantCard = ({ resList }) => {
           </div>
         </div>
         <div className="px-2 py-1">
-          <div className="text-xl font-bold">{name}</div>
+          <div className="text-lg font-bold">
+            {name.length > 26 ? `${name.substring(0, 25)}...` : name}
+          </div>
           <div className="flex items-center gap-2">
             <StarIcon /> {avgRating}
             <span>{sla.slaString}</span>

@@ -16,9 +16,11 @@ const Categories = () => {
   };
 
   return (
-    <div className="max-w-[1200px] mx-auto p-[15px]">
+    <div className="max-w-[1200px] mx-auto">
       <div className="flex items-center justify-between my-3">
-        <div className="text-[25px] font-extrabold">What's on your mind?</div>
+        <div className="text-[25px] font-extrabold p-[15px]">
+          What's on your mind?
+        </div>
         <div className="flex">
           <div
             className="flex justify-center items-center cursor-pointer w-[30px] h-[30px] mx-2 bg-[#e2e2e7] rounded-full"

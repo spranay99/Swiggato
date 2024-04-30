@@ -66,9 +66,12 @@ const RestaurantMenu = () => {
               </div>
             </div>
             <div className="border mx-4 my-2"> </div>
-            <div className="px-4 pb-2">
-              {restaurantDetails.feeDetails.message}
-            </div>
+            <div
+              className="px-4 pb-2"
+              dangerouslySetInnerHTML={{
+                __html: restaurantDetails.feeDetails.message,
+              }}
+            ></div>
           </div>
         </div>
         <div className="p-6 flex justify-center items-center gap-1">

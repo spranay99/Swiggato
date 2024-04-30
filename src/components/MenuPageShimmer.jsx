@@ -29,7 +29,7 @@ const MenuPageShimmer = () => {
       </div>
       {Array(4)
         .fill("")
-        .map((items, ind) => {
+        .map((__, ind) => {
           return (
             <React.Fragment key={ind}>
               <div className="px-6 pt-1 flex flex-col-reverse md:flex-row md:justify-between gap-10">
