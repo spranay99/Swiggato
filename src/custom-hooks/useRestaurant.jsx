@@ -17,7 +17,7 @@ const useRestaurant = () => {
     try {
       const data = await fetch(
         currentLocation !== null
-          ? `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${currentLocation.latitude}&lng=${currentLocation.longitude}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
+          ? `https://swiggato-server.onrender.com/api/restaurants?lat=${currentLocation.latitude}&lng=${currentLocation.longitude}&page_type=DESKTOP_WEB_LISTING`
           : RESTAURANT_LIST
       );
       const json = await data.json();
