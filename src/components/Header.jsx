@@ -6,7 +6,7 @@ import { IoHelpBuoyOutline } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
-import Logo from "../../public/images/logo.png";
+import Logo from "../../images/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { GrHistory } from "react-icons/gr";
 
