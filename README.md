@@ -2,10 +2,6 @@
 
 Welcome to Swiggato! - a food ordering platform that utilizes the live Swiggy API.
 
-## Hosted Link
-
-Check out the hosted version of Swiggato at [https://swiggato-app.vercel.app/].
-
 ## Key Features 🔑
 
 - **Config Driven UI** : Bringing the latest restaurant offerings to users through dynamic API integration.
