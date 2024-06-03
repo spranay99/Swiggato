@@ -45,4 +45,4 @@ npm install
 npm run dev
 ```
 
-Visit `http://localhost:5173` in your browser to see Spicy Pricey in action.
+Visit `http://localhost:5173` in your browser to see Swiggato in action.
